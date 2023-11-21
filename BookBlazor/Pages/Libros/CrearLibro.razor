@@ -1,0 +1,93 @@
+﻿@page "/libros/crear"  //Ruta de la página
+
+
+<div class="card">
+    <div class="card-header bg-dark">
+        <div class="row">
+            <div class="col-sm-12">
+                <h2 class="text-info">Crear un Nuevo Libro</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <EditForm Model="Modelolibro" OnValidSubmit="@(()=>ManejadorCreaLibro())">
+            <div class="container" style="padding:30px">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <label>Titulo</label>
+                        </div>
+                        <div class="col-sm-6">
+                            <InputText @bind-Value="Modelolibro.Titulo" class="form-control"></InputText>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <label>Autor</label>
+                        </div>
+                        <div class="col-sm-6">
+                            <InputText @bind-Value="Modelolibro.Autor" class="form-control"></InputText>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <label>Paginas</label>
+                        </div>
+                        <div class="col-sm-6">
+                            <InputNumber @bind-Value="Modelolibro.paginas" class="form-control"></InputNumber>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <label>Fecha de Creacion</label>
+                        </div>
+                        <div class="col-sm-6">
+                            <InputDate @bind-Value="Modelolibro.FechaPublicacion" class="form-control"></InputDate>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <label>Precio</label>
+                        </div>
+                        <div class="col-sm-6">
+                            <InputNumber @bind-Value="Modelolibro.Precio" class="form-control"></InputNumber>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <label>Descripcion</label>
+                        </div>
+                        <div class="col-sm-6">
+                            <InputText @bind-Value="Modelolibro.Descripcion" class="form-control"></InputText>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <button type="submit" class="btn btn-success">Guardar Libro</button>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-danger">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </EditForm>
+    </div>
+</div>
+
+
+@code {
+    private Libro Modelolibro = new Libro();
+
+    private async Task ManejadorCreaLibro()
+    {
+        var crearlibro = await Repository.CrearLibro(Modelolibro);
+    }
+
+}
